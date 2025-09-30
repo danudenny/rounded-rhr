@@ -24,9 +24,14 @@ def round_coordinates(geom, precision=6):
         return None
 
     def round_coords(x, y, z=None):
+        # Round and format to exact precision (no more, no less)
+        x_rounded = float(f"{x:.{precision}f}")
+        y_rounded = float(f"{y:.{precision}f}")
+        
         if z is not None:
-            return (round(x, precision), round(y, precision), round(z, precision))
-        return (round(x, precision), round(y, precision))
+            z_rounded = float(f"{z:.{precision}f}")
+            return (x_rounded, y_rounded, z_rounded)
+        return (x_rounded, y_rounded)
 
     return transform(round_coords, geom)
 
